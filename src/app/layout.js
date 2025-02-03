@@ -17,6 +17,13 @@ const poppins = Poppins({
   subsets: ["latin"],
 });
 
+export const metadata = {
+  title: "Portfolio MSANTOS",
+  description: "Confira meu portfólio e veja como posso contribuir para seu projeto.",
+  charset: "UTF-8",
+  viewport: "width=device-width, initial-scale=1.0",
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
