@@ -13,20 +13,20 @@ export default function Navbar({ darkMode, toggleTheme }) {
 
 
   return (
-    <header className="navbar dark:bg-dark-primary bg-light-primary border-b dark:border-[#050505] border-gray-100 ">
+    <header className="dark:bg-dark-primary bg-light-primary border-b dark:border-[#050505] border-gray-100 fixed w-full z-[1000] shadow-(--shadow-light)">
       <div className="container mx-auto flex max-w-7xl items-center justify-between p-3 lg:px-8">
         <div className="text-2xl font-bold text-pinkLogo">
             M<span className="dark:text-gray-300  text-black ">SANTOS</span>
         </div>
 
-      <nav className="nav-links">
-        <a href="#ola" className="dark:text-gray-300  text-black">Olá</a>
-        <a href="#projetos" className="dark:text-gray-300  text-black">Projetos</a>
-        <a href="#contato" className="dark:text-gray-300  text-black">Contato</a>
+      <nav className="gap-8 font-bold uppercase items-center hidden md:flex">
+        <a href="#ola" className="dark:text-gray-300  text-black hover:text-pinkLogo dark:hover:text-pinkLogo active:text-pinkLogo">Olá</a>
+        <a href="#projetos" className="dark:text-gray-300  text-black hover:text-pinkLogo dark:hover:text-pinkLogo active:text-pinkLogo">Projetos</a>
+        <a href="#contato" className="dark:text-gray-300  text-black hover:text-pinkLogo dark:hover:text-pinkLogo active:text-pinkLogo">Contato</a>
         <ThemeToggle darkMode={darkMode} toggleTheme={toggleTheme} />
       </nav>
 
-        <div className="hamburger">
+        <div className="block md:hidden">
           <Button onClick={toggleDrawer(true)}><MenuIcon className="dark:text-gray-300  text-black mx-auto" /></Button>
         </div>
       </div>
@@ -38,10 +38,10 @@ export default function Navbar({ darkMode, toggleTheme }) {
               <CloseIcon className="text-gray-800 dark:text-white" />
             </IconButton>
           </div>
-          <nav className="mobile-menu">
-            <a href="#ola" className="dark:text-gray-300  text-black">Olá</a>
-            <a href="#projetos" className="dark:text-gray-300  text-black">Projetos</a>
-            <a href="#contato" className="dark:text-gray-300  text-black">Contato</a>
+          <nav className="flex flex-col md:hidden gap-5 uppercase font-bold">
+            <a href="#ola" className="dark:text-gray-300  text-black hover:text-pinkLogo dark:hover:text-pinkLogo active:text-pinkLogo">Olá</a>
+            <a href="#projetos" className="dark:text-gray-300  text-black hover:text-pinkLogo dark:hover:text-pinkLogo active:text-pinkLogo">Projetos</a>
+            <a href="#contato" className="dark:text-gray-300  text-black hover:text-pinkLogo dark:hover:text-pinkLogo active:text-pinkLogo">Contato</a>
             <ThemeToggle darkMode={darkMode} toggleTheme={toggleTheme} />
           </nav>
         </div> 

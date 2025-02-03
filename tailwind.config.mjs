@@ -11,6 +11,7 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        pinkLogo: "var(--color-pink-logo)",
         primary: {
           DEFAULT: '#FF0000',
           dark: '#EB0665',
