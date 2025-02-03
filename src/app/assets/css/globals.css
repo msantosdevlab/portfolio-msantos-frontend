@@ -6,24 +6,63 @@
   :root {
     --background: #ffffff;
     --foreground: #171717;
+    --shadow-light: 1px 1px 6px rgba(0,0,0,.25);
+    --color-white: #ffffff;
+    --color-pink-logo: #e00087;
+    --color-pink: #E33FA1;
+    --color-light-pink: #c471ed;
+    --color-light-blue: #36C6F0;
+    --color-primary: #059DFF;
+    --color-secondary: #FB5343;
+    --color-secondary-alt: #f64f59;
+    --color-tertiary: #6549D5;
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
       --background: #0a0a0a;
       --foreground: #ededed;
-      --shadow-light: 1px 1px 6px rgba(0,0,0,.25);
-      --color-pink-logo: #e00087;
     }
+  }
+}
+
+@layer components {
+  a.btn-default,button.btn-default,div.btn-default{
+    padding: 9px 30px;
+    border: none;
+    border-radius: 8px;
+    background-color: transparent;
+    background: linear-gradient(95deg, var(--color-primary) 5%, var(--color-tertiary) 45%, var(--color-pink) 75%, var(--color-secondary) 100%);
+    background-size: 200% 100%;
+    background-position: 35% center;
+    transition-duration: .3s;
+    color: var(--color-white);
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    text-shadow: var(--shadow-light);
+    text-transform: capitalize;
+    display: inline-block;
+    width: auto;
+    transition: background-position 0.5s ease-in-out;
+  }
+  
+  a.btn-default:hover,button.btn-default:hover,div.btn-default:hover {
+    background-position: right center;
+    border: none;
+  }
+}
+
+@layer utilities {
+  .text-gradient{
+    background: linear-gradient(95deg, var(--color-light-blue) 15%, var(--color-light-pink) 45%, var(--color-secondary-alt) 75%, var(--color-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-@media (max-width: 768px) {
-
+  font-family: "Poppins", serif;
 }

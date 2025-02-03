@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/app/components/navbar/Navbar';
+import Introduction from '@/app/components/introduction/Introduction';
 import ThemeToggle from '@/app/components/ThemeToggle';
 
 
@@ -25,6 +26,9 @@ export default function Home() {
   ];
 
   return (
-      <Navbar darkMode={darkMode} toggleTheme={toggleTheme} />
+      <>
+        <Navbar darkMode={darkMode} toggleTheme={toggleTheme} />
+        <Introduction />
+      </>
   );
 }
