@@ -5,6 +5,7 @@ import { CssBaseline } from "@mui/material";
 import Navbar from '@/app/components/navbar/Navbar';
 import Introduction from '@/app/components/introduction/Introduction';
 import { ProjectsSection } from '@/app/components/projects/ProjectsSection';
+import LinkedinProfile from '@/app/components/linkedinprofile/LinkedinProfile';
 import ThemeToggle from '@/app/components/ThemeToggle';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -53,6 +54,7 @@ export default function Home() {
       <Navbar darkMode={darkMode} toggleTheme={toggleTheme} />
       <Introduction />
       <ProjectsSection projects={projects} />
+      <LinkedinProfile />
     </ThemeProvider>
   );
 }
