@@ -20,9 +20,9 @@ export default function Navbar({ darkMode, toggleTheme }) {
         </div>
 
       <nav className="gap-8 font-bold uppercase items-center hidden md:flex">
-        <a href="#introduction" className="dark:text-gray-300  text-black hover:text-pinkLogo dark:hover:text-pinkLogo active:text-pinkLogo">Olá</a>
-        <a href="#projects" className="dark:text-gray-300  text-black hover:text-pinkLogo dark:hover:text-pinkLogo active:text-pinkLogo">Projetos</a>
-        <a href="#contact" className="dark:text-gray-300  text-black hover:text-pinkLogo dark:hover:text-pinkLogo active:text-pinkLogo">Contato</a>
+        <a href="#introduction" className="dark:text-gray-300  text-black hover:text-pinkLogo dark:hover:text-pinkLogo active:text-pinkLogo transition-colors duration-500">Olá</a>
+        <a href="#projects" className="dark:text-gray-300  text-black hover:text-pinkLogo dark:hover:text-pinkLogo active:text-pinkLogo transition-colors duration-500">Projetos</a>
+        <a href="#contact" className="dark:text-gray-300  text-black hover:text-pinkLogo dark:hover:text-pinkLogo active:text-pinkLogo transition-colors duration-500">Contato</a>
         <ThemeToggle darkMode={darkMode} toggleTheme={toggleTheme} />
       </nav>
 
