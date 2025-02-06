@@ -6,6 +6,7 @@ import Navbar from '@/app/components/navbar/Navbar';
 import Introduction from '@/app/components/introduction/Introduction';
 import { ProjectsSection } from '@/app/components/projects/ProjectsSection';
 import LinkedinProfile from '@/app/components/linkedinprofile/LinkedinProfile';
+import Contact from '@/app/components/contact/Contact';
 import ThemeToggle from '@/app/components/ThemeToggle';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -55,6 +56,7 @@ export default function Home() {
       <Introduction />
       <ProjectsSection projects={projects} />
       <LinkedinProfile />
+      <Contact />
     </ThemeProvider>
   );
 }
