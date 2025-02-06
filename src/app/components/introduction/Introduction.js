@@ -7,7 +7,7 @@ export default function Introduction() {
                 <h1 className="text-gradient text-4xl md:text-5xl font-bold mb-4">
                     Mônica Santos
                 </h1>
-                <p className="dark:text-gray-200 text-black  mb-6 max-w-2xl text-center">
+                <p className="dark:text-gray-200 text-black mb-6 max-w-2xl text-center">
                 Com mais de uma década gerenciando projetos web, migrei para a programação para unir visão estratégica e habilidades técnicas.
                 </p>
                 <p className="dark:text-gray-200 text-black mb-6 max-w-2xl text-center">

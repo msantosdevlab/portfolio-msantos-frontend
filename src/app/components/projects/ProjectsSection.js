@@ -22,11 +22,11 @@ export function ProjectsSection({ projects }) {
   
     return (
       <section className="dark:bg-dark-secondary bg-light-secondary pt-18 pb-28" id="projects">
-        <div className="container max-w-6xl mx-auto px-4 py-8">
+        <div className="container max-w-6xl mx-auto p-3 lg:px-8">
           <div className="flex flex-col items-center mb-6">
-            <h2 className="text-title font-title text-center dark:text-gray-300">PROJETOS</h2>
+            <h2 className="text-title font-title text-center dark:text-dark-title uppercase">Projetos</h2>
             <p className="subtitle dark:text-dark-subtitle text-light-subtitle max-w-2xl text-center">
-            Contrary to popular belief, Lorem Ipsum is not simply random text.
+            Explore meu portfólio e veja como transformo teoria em prática por meio de projetos reais e funcionais.
             </p>
 
           </div>
