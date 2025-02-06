@@ -28,10 +28,10 @@ export default function Home() {
   
 
   const projects = [
-    { title: "Skilled e-learning", type: "Landing Page", tech: ["HTML", "CSS", "JavaScript"], description: "Página sobre fundamentos do HTML & CSS", category: "Backend" },
-    { title: "Stilo", type: "Landing Page", tech: ["HTML", "CSS", "JavaScript"], description: "Página para aprofundar fundamentos", category: "Backend" },
-    { title: "Calculadora", type: "Web App", tech: ["HTML", "CSS", "JavaScript", "PHP"], description: "Uma calculadora funcional", category: "Fronted" },
-    { title: "Equalizer", type: "Landing Page", tech: ["HTML", "CSS", "REACT"], description: "Um projeto de equalizador de áudio", category: "Salesforce" }
+    { title: "FeedPortugal", type: "Landing Page", tech: ["React", "Vite", "HTML", "CSS"], description: "O projeto Feed Portugal é uma aplicação web que exibe as últimas notícias de Portugal, provenientes de diversas sites de notícias, utilizando a API pública do GNews.", image:"", category: "Fronted", link_rep: "https://github.com/msantosdevlab/feed-portugal", link_view: "https://feed-pt.msantos.site/" },
+    { title: "Stilo", type: "Landing Page", tech: ["HTML", "CSS", "JavaScript"], description: "Página para aprofundar fundamentos", image:"", category: "Backend", link_rep: "", link_view: "" },
+    { title: "Calculadora", type: "Web App", tech: ["HTML", "CSS", "JavaScript", "PHP"], description: "Uma calculadora funcional",  image:"", category: "Fronted", link_rep: "", link_view: ""  },
+    { title: "Equalizer", type: "Landing Page", tech: ["HTML", "CSS", "REACT"], description: "Um projeto de equalizador de áudio",  image:"", category: "Salesforce", link_rep: "", link_view: ""  }
   ];
 
   // CCreating a customized MUI theme
