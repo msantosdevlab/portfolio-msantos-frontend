@@ -11,7 +11,7 @@ export default function LinkedinProfile() {
                 <p className="text-subtitle mb-6 max-w-2xl text-center dark:text-dark-subtitle text-light-subtitle ">
                 Quer saber mais sobre minha experiência e trajetória? <br /> Acesse meu perfil completo.
                 </p>
-                <a href="https://linkedin.com" target="_blank" className="btn-default">
+                <a href="https://www.linkedin.com/in/msantosdev/" target="_blank" className="btn-default">
                     <p> <LinkedIn sx={{ fontSize: 25 }} /> Ver Perfil</p>
                 </a>
             </div>
