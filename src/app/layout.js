@@ -18,11 +18,16 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: "Portfolio MSANTOS",
+  title: "Portfolio - Mônica Santos",
   description: "Confira meu portfólio e veja como posso contribuir para seu projeto.",
   charset: "UTF-8",
-  viewport: "width=device-width, initial-scale=1.0",
 };
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1.0,
+};
+
 
 export default function RootLayout({ children }) {
   return (
