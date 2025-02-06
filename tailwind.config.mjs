@@ -24,7 +24,9 @@ export default {
           card: '#F5F5F5',
           border: '#E5E5E5',
           title: "#000",
-          subtitle: "var(--color-black-secondary)"
+          subtitle: "var(--color-black-secondary)",
+          footer: "var(--foreground)",
+        
         },
         dark: {
           primary: '#000',
@@ -33,7 +35,8 @@ export default {
           card: '#2A2A2A',
           border: '#050505',
           title: "var(--color-white)",
-          subtitle: "#b5b5b5"
+          subtitle: "#b5b5b5",
+          footer: "var(--color-gray)"
         },
       },
       fontFamily: {
