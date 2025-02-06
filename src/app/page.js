@@ -7,6 +7,7 @@ import Introduction from '@/app/components/introduction/Introduction';
 import { ProjectsSection } from '@/app/components/projects/ProjectsSection';
 import LinkedinProfile from '@/app/components/linkedinprofile/LinkedinProfile';
 import Contact from '@/app/components/contact/Contact';
+import Footer from '@/app/components/footer/Footer';
 import ThemeToggle from '@/app/components/ThemeToggle';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -57,6 +58,7 @@ export default function Home() {
       <ProjectsSection projects={projects} />
       <LinkedinProfile />
       <Contact />
+      <Footer />
     </ThemeProvider>
   );
 }
