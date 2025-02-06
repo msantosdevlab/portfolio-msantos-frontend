@@ -8,7 +8,7 @@
     --foreground: #171717;
     --shadow-light: 1px 1px 6px rgba(0,0,0,.25);
     --color-white: #ffffff;
-    --color-black-secondary: #242424;
+    --color-black-secondary: #0d0d0d;
     --color-pink-logo: #e00087;
     --color-pink: #E33FA1;
     --color-light-pink: #c471ed;
@@ -66,4 +66,8 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: "Poppins", serif;
+}
+
+#contact {
+  background-image: url('../images/bg_contact.png') no-repeat;
 }

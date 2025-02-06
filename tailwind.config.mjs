@@ -17,16 +17,6 @@ export default {
           dark: '#EB0665',
         },
         blackSecondary: "var(--color-black-secondary)",
-        pinkLogo: "#e00087",
-        dark: {
-          primary: '#000',
-          secondary: '#0D0D0D',
-          text: '#FFFFFF',
-          card: '#2A2A2A',
-          border: '#050505',
-          title: "#FFF",
-          subtitle: "#8c8c8c"
-        },
         light: {
           primary: '#F8F9FA',
           secondary: "#F3F3F3",
@@ -36,10 +26,18 @@ export default {
           title: "#000",
           subtitle: "var(--color-black-secondary)"
         },
+        dark: {
+          primary: '#000',
+          secondary: 'var(--color-black-secondary)',
+          text: 'var(--color-white)',
+          card: '#2A2A2A',
+          border: '#050505',
+          title: "var(--color-white)",
+          subtitle: "#b5b5b5"
+        },
       },
       fontFamily: {
         sans: ['Poppins', 'sans-serif'],
-
       },
       spacing: {
         '18': '4.5rem',
@@ -51,7 +49,7 @@ export default {
       },
       fontSize: {
         'title': ['2.5rem', { lineHeight: '3rem' }],
-        'subtitle': ['1.25rem', { lineHeight: '1.75rem' }],
+        'subtitle': ['1rem', { lineHeight: '1.5rem' }],
       },
       fontWeight:{
         'title': '900',
