@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { CssBaseline } from "@mui/material";
+import { CssBaseline, LinearProgress, Typography  } from '@mui/material';
 import Navbar from '@/app/components/navbar/Navbar';
 import Introduction from '@/app/components/introduction/Introduction';
 import { ProjectsSection } from '@/app/components/projects/ProjectsSection';
@@ -23,19 +23,37 @@ export default function Home() {
     setDarkMode(!darkMode);
     document.documentElement.classList.toggle('dark');
   };
-  
 
-  const projects = [
-    { title: "FeedPortugal", type: "Landing Page", tech: ["React", "Vite", "HTML", "CSS"], description: "O projeto Feed Portugal é uma aplicação web que exibe as últimas notícias de Portugal, provenientes de diversas sites de notícias, utilizando a API pública do GNews.", image:"", category: "Fronted", link_rep: "https://github.com/msantosdevlab/feed-portugal", link_view: "https://feed-pt.msantos.site/" },
-    { title: "Stilo", type: "Landing Page", tech: ["HTML", "CSS", "JavaScript"], description: "Página para aprofundar fundamentos", image:"", category: "Backend", link_rep: "", link_view: "" },
-    { title: "Calculadora", type: "Web App", tech: ["HTML", "CSS", "JavaScript", "PHP"], description: "Uma calculadora funcional",  image:"", category: "Fronted", link_rep: "", link_view: ""  },
-    { title: "Equalizer", type: "Landing Page", tech: ["HTML", "CSS", "REACT"], description: "Um projeto de equalizador de áudio",  image:"", category: "Salesforce", link_rep: "", link_view: ""  }
-  ];
+  // Exibe a barra de carregamento enquanto os dados não chegam
+  if (loading || error) {
+    return (
+      <section className="dark:bg-dark-primary bg-light-primary loader-area flex flex-col justify-center items-center min-h-screen">
+      <LinearProgress
+        sx={{
+        width: "50%",
+          height: "2px",
+          borderRadius: "4px",
+          background: "linear-gradient(95deg, var(--color-light-blue) 15%, var(--color-light-pink) 45%, var(--color-secondary-alt) 75%, var(--color-secondary))",
+        }}
+      />
+      <Typography
+      sx={{
+        fontSize: "1rem",
+        fontWeight: "bold",
+        animation: "blink 3.5s infinite"
+      }}
+      className="dark:text-gray-200 text-black mt-4"
+      >
+        Loading...
+      </Typography>
+    </section>
+    );
+  }
 
-  // CCreating a customized MUI theme
+  // Criando um tema customizado com MUI
   const theme = createTheme({
     palette: {
-      mode: darkMode ? "dark" : "light", 
+      mode: darkMode ? "dark" : "light",
       primary: {
         main: darkMode ? "#fff" : "#000",
       },
