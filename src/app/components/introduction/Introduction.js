@@ -1,6 +1,5 @@
 import React from 'react';
 import LayersIcon from '@mui/icons-material/Layers';
-import Typography from '@mui/material/Typography';
 import DOMPurify from 'dompurify';
 
 export default function Introduction({ data }) {
@@ -16,7 +15,7 @@ export default function Introduction({ data }) {
                 <h1 className="text-gradient text-4xl md:text-5xl font-bold mb-4">
                     {data.title ?? "No content"}
                 </h1>
-                <Typography
+                <p
                     className="dark:text-gray-200 text-black mb-6 max-w-2xl text-center"
                     dangerouslySetInnerHTML={{ __html: sanitizedDescription }} 
                 />
