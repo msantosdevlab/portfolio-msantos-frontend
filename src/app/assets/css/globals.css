@@ -26,12 +26,60 @@
     --color-secondary-alt: #f64f59;
     --color-tertiary: #6549D5;
   }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --background: #0a0a0a;
-      --foreground: #ededed;
-    }
+  body {
+    color: var(--foreground);
+    background: var(--background);
+    font-family: "Poppins", serif;
+  }
+  
+  #contact {
+    background-image: url('../images/bg_contact.png') no-repeat;
+  }
+  
+  .description h3 {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  .description p {
+    font-size: 0.950rem;
+  }
+  
+  .description ul {
+    margin-bottom: 2px;
+    list-style-type: square;
+    padding-left: 16px;
+  }
+  
+  .description a{
+    background: linear-gradient(95deg, var(--color-light-blue) 15%, var(--color-light-pink) 45%, var(--color-secondary-alt) 75%, var(--color-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .description a:hover{
+    background: var(--color-pink-logo);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: 0.6s
+  }
+  
+  .description h3 {
+    color: #050505;
+  }
+  
+  .description p {
+    color: #0d0d0d !important;
+  }
+  
+  .dark .description p,  .dark .description li{
+    color: #cecdcd !important;
+  }
+  
+  .dark .description h3 {
+    color: #e2e2e2;
   }
 }
 
@@ -70,12 +118,3 @@
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: "Poppins", serif;
-}
-
-#contact {
-  background-image: url('../images/bg_contact.png') no-repeat;
-}
