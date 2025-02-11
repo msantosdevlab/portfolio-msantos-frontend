@@ -1,7 +1,7 @@
 // components/Navbar.js
+import React, { useState, useEffect } from 'react';
 import { IconButton, Drawer, Button } from "@mui/material";
 import { Menu as MenuIcon, Close as CloseIcon } from "@mui/icons-material";
-import React, { useState, useEffect } from 'react';
 import ThemeToggle from '../ThemeToggle';
 
 export default function Navbar({ darkMode, toggleTheme }) {
@@ -37,13 +37,17 @@ export default function Navbar({ darkMode, toggleTheme }) {
             <a href="#introduction">M<span className="dark:text-gray-300  text-black ">SANTOS</span></a>
         </div>
 
-      <nav className="gap-8 font-bold uppercase items-center hidden md:flex">
-        <a href="#introduction" className={activeSection === 'introduction' ? 'text-pinkLogo' : 'dark:text-gray-300  text-black hover:text-pinkLogo dark:hover:text-pinkLogo'}>Olá</a>
-        <a href="#projects" className={activeSection === 'projects' ? 'text-pinkLogo' : 'dark:text-gray-300  text-black hover:text-pinkLogo dark:hover:text-pinkLogo'}>Projetos</a>
-        <a href="#linkedinprofile" className={activeSection === 'linkedinprofile' ? 'text-pinkLogo' : 'dark:text-gray-300  text-black hover:text-pinkLogo dark:hover:text-pinkLogo'}>LinkedIn</a>
-        <a href="#contact" className={activeSection === 'contact' ? 'text-pinkLogo' : 'dark:text-gray-300  text-black hover:text-pinkLogo dark:hover:text-pinkLogo'}>Contato</a>
-        <ThemeToggle darkMode={darkMode} toggleTheme={toggleTheme} />
-      </nav>
+        <nav className="gap-8 font-bold uppercase items-center hidden md:flex">
+          {[
+            { id: 1, name: "introduction", label: "Olá" },
+            { id: 2, name: "projects", label: "Projetos" },
+            { id: 3, name: "linkedinprofile", label: "LinkedIn" },
+            { id: 4, name: "contact", label: "Contato" },
+          ].map(({ id, name, label }) => (
+            <a key={id} href={`#${name}`} className={activeSection === name ? 'text-pinkLogo' : 'dark:text-gray-300  text-black hover:text-pinkLogo dark:hover:text-pinkLogo'}>{label}</a>
+          ))}
+          <ThemeToggle darkMode={darkMode} toggleTheme={toggleTheme} />
+        </nav>
 
         <div className="block md:hidden">
           <Button onClick={toggleDrawer(true)}><MenuIcon className="dark:text-gray-300  text-black mx-auto" /></Button>
@@ -58,10 +62,14 @@ export default function Navbar({ darkMode, toggleTheme }) {
             </IconButton>
           </div>
           <nav className="flex flex-col md:hidden gap-5 uppercase font-bold">
-            <a href="#introduction" className="dark:text-gray-300  text-black hover:text-pinkLogo dark:hover:text-pinkLogo">Olá</a>
-            <a href="#projects" className="dark:text-gray-300  text-black hover:text-pinkLogo dark:hover:text-pinkLogo">Projetos</a>
-            <a href="#linkedinprofile" className="dark:text-gray-300  text-black hover:text-pinkLogo dark:hover:text-pinkLogo">LinkedIn</a>
-            <a href="#contact" className="dark:text-gray-300  text-black hover:text-pinkLogo dark:hover:text-pinkLogo">Contato</a>
+            {[
+              { id: 1, name: "introduction", label: "Olá" },
+              { id: 2, name: "projects", label: "Projetos" },
+              { id: 3, name: "linkedinprofile", label: "LinkedIn" },
+              { id: 4, name: "contact", label: "Contato" },
+            ].map(({ id, name, label }) => (
+              <a key={id} href={`#${name}`} className="dark:text-gray-300 text-black hover:text-pinkLogo dark:hover:text-pinkLogo">{label}</a>
+            ))}
             <div className="w-1">
               <ThemeToggle darkMode={darkMode} toggleTheme={toggleTheme} />
             </div>
