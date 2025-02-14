@@ -15,6 +15,28 @@ import 'aos/dist/aos.css';
 export default function Home() {
   const [darkMode, setDarkMode] = useState(true);
   const { data, loading, error } = useFetchData("content");
+
+  useEffect(() => {
+    // Carregar o script do Tawk
+    const script = document.createElement("script");
+    script.id = "tawk-to";
+    script.async = true;
+    script.src = `${process.env.NEXT_PUBLIC_API_TAWK}`;
+    script.charset = "UTF-8";
+    script.setAttribute("crossorigin", "*");
+
+    script.onload = () => {
+      console.log("Tawk chat script loaded!");
+    };
+
+    // Adiciona o script à página
+    document.head.appendChild(script);
+
+    // Limpeza
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []); // Só roda uma vez quando o componente é montado
   
   useEffect(() => {
     document.documentElement.classList.add('dark');
@@ -29,13 +51,13 @@ export default function Home() {
   // Exibe a barra de carregamento enquanto os dados não chegam
   if (loading || error) {
     return (
-      <section className="dark:bg-dark-primary bg-light-primary loader-area flex flex-col justify-center items-center min-h-screen gap-2">
+      <section className="dark:dark:bg-darkPrimary bg-light-primary loader-area flex flex-col justify-center items-center min-h-screen gap-2">
       <LinearProgress
         sx={{
         width: "50%",
           height: "1px",
           borderRadius: "4px",
-          background: "linear-gradient(95deg, var(--color-light-blue) 15%, var(--color-light-pink) 45%, var(--color-secondary-alt) 75%, var(--color-secondary))",
+          background: "linear-gradient(95deg, var(--color-lightBlue) 15%, var(--color-lightPink) 45%, var(--color-secondaryAlt) 75%, var(--color-secondary))",
         }}
       />
       <Typography
@@ -53,7 +75,7 @@ export default function Home() {
   }
 
   // Extraindo os dados da API
-  const { introduction, project_title, project_categories, projects } = data || {};
+  const { introduction, project_title, project_categories, projects, linkedin, contact } = data || {};
 
   // Ciando um tema customizado com MUI
   const theme = createTheme({
@@ -77,10 +99,10 @@ export default function Home() {
       <Navbar darkMode={darkMode} toggleTheme={toggleTheme} />
       {introduction && <Introduction data={introduction} />}
       {project_title && project_categories && projects && (
-        <ProjectsSection title={project_title} projects={projects} categories={project_categories} />
+        <ProjectsSection data={project_title} projects={projects} categories={project_categories} />
       )}
-      <LinkedinProfile />
-      <Contact />
+      {linkedin && <LinkedinProfile data={linkedin} />}
+      {contact && <Contact data={contact} />}
       <Footer />
   </ThemeProvider>
   );
