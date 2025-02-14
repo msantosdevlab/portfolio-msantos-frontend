@@ -3,9 +3,9 @@ import axios from "axios";
 
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
-export function useFetchData(endpoint) {
+export function useFetchData(endpoint, lang = 'pt') {  // Agora o idioma pode ser passado como argumento
   const { data, error, isLoading } = useSWR(
-    `/api/proxy?endpoint=${endpoint}`,
+    `/api/proxy?endpoint=${endpoint}&lang=${lang}`,  // Passa o idioma na URL
     fetcher,
     {
       revalidateOnFocus: false, // Não refaz a requisição ao voltar para a aba

@@ -1,13 +1,14 @@
 import axios from 'axios';
 
 export default async function handler(req, res) {
-    const { endpoint } = req.query;
+    const { endpoint, lang } = req.query; // Pega o parâmetro lang da query
 
     if (!endpoint) {
         return res.status(400).json({ error: "Endpoint not specified" });
     }
 
-    const apiUrl = `${process.env.API_URL}/${endpoint}`;
+    // Define a URL da API com base no endpoint e no idioma (lang)
+    const apiUrl = `${process.env.API_URL}/${endpoint}?lang=${lang || 'pt'}`;  // 'pt' como fallback
 
     try {
         const response = await axios.get(apiUrl, {
@@ -21,13 +22,10 @@ export default async function handler(req, res) {
     } catch (error) {
         // Tratamento de erro mais detalhado
         if (error.response) {
-            // O erro é proveniente da resposta do servidor
             return res.status(error.response.status).json({ error: error.response.data.message || "Error when searching for data" });
         } else if (error.request) {
-            // A requisição foi feita, mas não obteve resposta
             return res.status(500).json({ error: "No response received from the server" });
         } else {
-            // Erro inesperado na configuração da requisição
             return res.status(500).json({ error: "Error while setting up the request" });
         }
     }
