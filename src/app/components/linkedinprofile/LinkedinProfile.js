@@ -1,21 +1,31 @@
 import * as React from 'react';
 import { LinkedIn } from "@mui/icons-material";
+import parse from "html-react-parser";
+import DOMPurify from 'dompurify';
 
-export default function LinkedinProfile() {
+export default function LinkedinProfile({ data }) {
+    if (!data) return null;
+
+    // Sanitizando o conteúdo HTML para segurança
+    const sanitizedTitle = DOMPurify.sanitize(data.title ?? "No content");
+    const title = parse(sanitizedTitle)
+
+    const sanitizedDescription = DOMPurify.sanitize(data.description ?? "No content");
+    const description = parse(sanitizedDescription)
+
     return (
-        <section className="dark:bg-dark-primary bg-light-primary py-20" id="linkedinprofile">
-            <div className="container max-w-6xl mx-auto px-4 py-8 flex flex-col justify-between items-center">
-                 <h2 className="text-title font-title text-center dark:text-gray-300 text-blackSecondary uppercase"> 
-                    Acesse o meu <span className='text-gradient'> LinkedIn</span>!
-                </h2>
-                <p className="text-subtitle mb-6 max-w-2xl text-center dark:text-dark-subtitle text-light-subtitle ">
-                Quer saber mais sobre minha experiência e trajetória? <br /> Acesse meu perfil completo.
-                </p>
-                <a href="https://www.linkedin.com/in/msantosdev/" target="_blank" className="btn-default">
-                    <p> <LinkedIn sx={{ fontSize: 25 }} /> Ver Perfil</p>
-                </a>
+      <section id="linkedinprofile" className="py-20 bg-light-primary dark:bg-darkPrimary">
+         <div className="container mx-auto max-w-6xl px-4 py-8 flex flex-col items-center justify-between">
+            <div className="title linkedinsection text-center font-title uppercase text-blackSecondary dark:text-gray-300">
+               { title }
             </div>
- 
-        </section>
+            <div className="subtitle text-subtitle mb-6 max-w-2xl text-center text-light-subtitle dark:text-dark-subtitle">
+               { description }
+            </div>
+            <a href={data.button_href} target={data.button_target} className="btn-default" >
+               <span> <LinkedIn sx={{ fontSize: 25 }} /> {data.button_text} </span>
+            </a>
+         </div>
+      </section>
     );
 }
