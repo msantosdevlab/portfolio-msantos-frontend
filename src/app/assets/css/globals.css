@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @keyframes blink {
   0% { opacity: 1; }
@@ -8,83 +8,120 @@
   100% { opacity: 1; }
 }
 
+@theme {
+  --background: #ffffff;
+  --foreground: #171717;
+  --shadow-light: 1px 1px 6px rgba(0,0,0,.25);
+  --color-white: #ffffff;
+  --color-gray: #c9c9c9;
+  --color-darkPrimary: #000;
+  --color-darkSecondary: #0d0d0d;
+  --color-lightPrimary: #F8F9FA;
+  --color-lightSecondary: #ebeaea;
+  --color-pinkLogo: #e00087;
+  --color-pink: #E33FA1;
+  --color-lightPink: #c471ed;
+  --color-lightBlue: #36C6F0;
+  --color-primary: #059DFF;
+  --color-secondary: #FB5343;
+  --color-secondaryAlt: #f64f59;
+  --color-tertiary: #6549D5;
+}
+
+/* Declarando a custom utility fora dos blocos @layer */
+@utility text-gradient {
+  background: linear-gradient(95deg, var(--color-lightBlue) 15%, var(--color-lightPink) 45%, var(--color-secondaryAlt) 75%, var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
 @layer base {
-  :root {
-    --background: #ffffff;
-    --foreground: #171717;
-    --shadow-light: 1px 1px 6px rgba(0,0,0,.25);
-    --color-white: #ffffff;
-    --color-gray: #c9c9c9;
-    --color-black-secondary: #0d0d0d;
-    --color-pink-logo: #e00087;
-    --color-pink: #E33FA1;
-    --color-light-pink: #c471ed;
-    --color-light-blue: #36C6F0;
-    --color-primary: #059DFF;
-    --color-secondary: #FB5343;
-    --color-secondary-alt: #f64f59;
-    --color-tertiary: #6549D5;
-  }
   body {
-    color: var(--foreground);
-    background: var(--background);
+    color: var(--color-white);
+    background: var(--color-darkPrimary);
     font-family: "Poppins", serif;
   }
-  
+
+  .title {
+    font-size: 2.5rem;
+    line-height: 3rem;
+    font-weight: 900;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    line-height: 1.5rem;    
+  }
+
+  .dark .subtitle{
+    color: #b5b5b5;
+  }
+
+
+  /*_____Introduction_____*/
+  #introduction h1{
+    @apply text-gradient;
+  }
+
+  #introduction p {
+    @apply dark:text-gray-200 text-black mb-6 max-w-2xl text-center;
+  }
+
+
+  /*_____Contact_____*/
   #contact {
     background-image: url('../images/bg_contact.png') no-repeat;
   }
-  
+
+
+
+  /*_____Modal_____*/
+  .dark .description p, .dark .description li {
+    color: #cecdcd !important;
+  }
+
+  .dark .description h3 {
+    color: #e2e2e2;
+  }
+
   .description h3 {
     margin-top: 20px;
     margin-bottom: 5px;
     font-size: 1rem;
     font-weight: bold;
+    color: #050505;
   }
-  
+
   .description p {
     font-size: 0.950rem;
+    color: #0d0d0d !important;
   }
-  
+
   .description ul {
     margin-bottom: 2px;
     list-style-type: square;
     padding-left: 16px;
   }
-  
-  .description a{
-    background: linear-gradient(95deg, var(--color-light-blue) 15%, var(--color-light-pink) 45%, var(--color-secondary-alt) 75%, var(--color-secondary));
+
+  .description a {
+    @apply text-gradient;
+  }
+
+  .description a:hover {
+    background: var(--color-pinkLogo);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    transition: 0.6s;
   }
-  
-  .description a:hover{
-    background: var(--color-pink-logo);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    transition: 0.6s
-  }
-  
-  .description h3 {
-    color: #050505;
-  }
-  
-  .description p {
-    color: #0d0d0d !important;
-  }
-  
-  .dark .description p,  .dark .description li{
-    color: #cecdcd !important;
-  }
-  
-  .dark .description h3 {
-    color: #e2e2e2;
+
+  /*_____LinkedIn_____*/
+  .linkedinsection span{
+    @apply text-gradient;
   }
 }
 
 @layer components {
-  a.btn-default,button.btn-default,div.btn-default{
+  .btn-default {
     padding: 9px 30px;
     border: none;
     border-radius: 8px;
@@ -100,21 +137,13 @@
     text-shadow: var(--shadow-light);
     text-transform: capitalize;
     display: inline-block;
-    width: auto;
     transition: background-position 0.5s ease-in-out;
   }
-  
-  a.btn-default:hover,button.btn-default:hover,div.btn-default:hover {
+
+  .btn-default:hover {
     background-position: right center;
     border: none;
   }
-}
 
-@layer utilities {
-  .text-gradient{
-    background: linear-gradient(95deg, var(--color-light-blue) 15%, var(--color-light-pink) 45%, var(--color-secondary-alt) 75%, var(--color-secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-}
 
+}
