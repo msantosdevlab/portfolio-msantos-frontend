@@ -1,29 +1,18 @@
-import { useState, useEffect } from "react";
+import useSWR from "swr";
 import axios from "axios";
 
+const fetcher = (url) => axios.get(url).then((res) => res.data);
+
 export function useFetchData(endpoint) {
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+  const { data, error, isLoading } = useSWR(
+    `/api/proxy?endpoint=${endpoint}`,
+    fetcher,
+    {
+      revalidateOnFocus: false, // Não refaz a requisição ao voltar para a aba
+      dedupingInterval: 300000, // Mantém os dados no cache por 60s
+      shouldRetryOnError: false, // Evita novas tentativas em caso de erro
+    }
+  );
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const res = await axios.get(`/api/proxy?endpoint=${endpoint}`);
-                setData(res.data); 
-            } catch (err) {
-                // Verifica se o erro é de requisição ou outro tipo
-                const errorMessage = err.response
-                    ? err.response.data.message || err.response.statusText
-                    : err.message;
-                setError(errorMessage);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchData();
-    }, [endpoint]);
-
-    return { data, loading, error };
+  return { data, loading: isLoading, error };
 }
