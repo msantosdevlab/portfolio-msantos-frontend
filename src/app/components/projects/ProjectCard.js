@@ -5,6 +5,7 @@ import { Button } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LaunchIcon from '@mui/icons-material/Launch';
 import ProjectModal from "./ProjectModal";
+import parse from "html-react-parser";
 import DOMPurify from 'dompurify';
 
 export function ProjectCard({ project, id }) {
@@ -14,6 +15,7 @@ export function ProjectCard({ project, id }) {
 
     // Sanitizando o conteúdo HTML para segurança
     const sanitizedDescription = DOMPurify.sanitize(project.short_description ?? "No content");
+    const short_description = parse(sanitizedDescription)
 
     const openModal = (project) => {
     setSelectedProject(project);
@@ -26,70 +28,115 @@ export function ProjectCard({ project, id }) {
     };
 
   return (
-    <div
-      className="dark:bg-dark-primary bg-light-primary rounded-lg p-5"
+      <div
+      className="rounded-lg p-5 dark:bg-darkPrimary g-lightPrimary"
       data-aos="fade-up"
       data-aos-duration={400 + id * 500}
       data-aos-easing="ease-in-out"
-    >
-     
+      >
       {/* Imagem do projeto */}
-      <div className="aspect-video bg-gray-200 dark:bg-gray-700 rounded-lg mb-4">
-        <Image
-          src={project.thumbnail ? `${process.env.NEXT_PUBLIC_IMAGE}${project.thumbnail}` : imageDefault}
-          alt={project.title || "Imagem do projeto"}
-          width={400} 
-          height={225}
-          className="object-cover" // Garantir que a imagem cubra o container
-        />
+      <div className="mb-4 aspect-video rounded-lg bg-gray-200 dark:bg-gray-700">
+         <div className="relative w-full aspect-video overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700">
+            <Image
+               src={
+                  project.thumbnail
+                  ? `${process.env.NEXT_PUBLIC_IMAGE}${project.thumbnail}`
+                  : imageDefault
+               }
+               alt={project.title || "Imagem do projeto"}
+               layout="fill" // Faz com que a imagem preencha todo o container
+               objectFit="cover" // Mantém a imagem como "cover"
+            />
+         </div>
       </div>
-      
-      {/* Titulo do projeto */}
-      <div>
-        <h3 className="text-xl font-bold mb-2 dark:text-white">{project.title ?? "Untitled"}</h3>
-      </div>     
-
+    
+      {/* Título do projeto */}
+      <h3 className="mb-2 text-xl font-bold dark:text-white">
+        {project.title ?? "Untitled"}
+      </h3>
+    
       {/* Descrição do projeto */}
-      <div>
-        <p className="dark:text-white text-black text-sm min-h-[6rem]" dangerouslySetInnerHTML={{ __html: sanitizedDescription }} >
-        </p>
+      <div className="min-h-[6rem] text-sm text-black dark:text-white">
+        { short_description }
       </div>
-
-      {/* Tags (tecnologias utilizadas no projeto) */}
+    
+      {/* Tags (tecnologias utilizadas) */}
       <div>
-        <span className="text-xs font-semibold dark:text-dark-subtitle text-light-subtitle">Stack:</span>
-        <div className="flex gap-2 flex-wrap mt-2 mb-4">
-          
+        <span className="text-xs font-semibold text-light-subtitle dark:text-dark-subtitle">
+          Stack:
+        </span>
+        <div className="mt-2 mb-4 flex flex-wrap gap-2">
           {(project.techs ?? []).map((tech, index) => (
             <span
               key={index}
-              className="dark:bg-dark-secondary bg-light-secondary rounded-full text-sm dark:text-white text-black px-3 py-1"
+              className="rounded-full px-3 py-1 text-sm text-black dark:text-white dark:bg-darkSecondary bg-lightSecondary"
             >
               {tech.name}
             </span>
           ))}
-       </div>
-      </div>
-
-      {/* Links Externos */}
-      <div className="">
-        <span className="text-xs font-semibold dark:text-dark-subtitle text-light-subtitle">Links:</span>
-        <div className="flex justify-between mt-2 mb-4 text-sm dark:text-dark-subtitle text-light-subtitle">
-          <a href="" className="dark:text-white text-black hover:text-pinkLogo dark:hover:text-pinkLogo transition-all duration-600"> <GitHubIcon sx={{ fontSize: 25 }} /><span> GitHub</span></a>
-          <a href="" className="dark:text-white text-black hover:text-pinkLogo dark:hover:text-pinkLogo transition-all duration-600"><LaunchIcon sx={{ fontSize: 25 }} /><span> ver o projeto</span></a>       
         </div>
       </div>
-      
+    
+      {/* Links Externos */}
+      <div>
+        <span className="text-xs font-semibold text-light-subtitle dark:text-dark-subtitle">
+          Links:
+        </span>
+        <div className="mt-2 mb-4 flex justify-between text-sm text-light-subtitle dark:text-dark-subtitle">
+          <a href={ project.link_rep_git } className="transition-all duration-600 text-black dark:text-white hover:text-pinkLogo dark:hover:text-pinkLogo">
+            <GitHubIcon sx={{ fontSize: 25 }} />
+            <span> GitHub</span>
+          </a>
+          <a href={ project.link_preview } className="transition-all duration-600 text-black dark:text-white hover:text-pinkLogo dark:hover:text-pinkLogo">
+            <LaunchIcon sx={{ fontSize: 25 }} />
+            <span> ver o projeto</span>
+          </a>
+        </div>
+      </div>
+    
       {/* Link Modal */}
       <div className="w-full pt-2">
-      <Button 
-        key={project.id}
-        className="cursor-pointer w-full px-4 py-2 border border-solid text-black border-black hover:bg-black hover:text-white dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black transition-all duration-600"
-        onClick={() => openModal(project)}>ver mais detalhes</Button>
-      </div>
+         <Button
+         key={project.id}
+         onClick={() => openModal(project)}
+         sx={(theme) => ({
+            cursor: 'pointer',
+            width: '100%',
+            px: 2,
+            py: 1,
+            border: '1px solid',
+            borderColor:
+               theme.palette.mode === 'light'
+               ? theme.palette.common.black
+               : theme.palette.common.white,
+            color:
+               theme.palette.mode === 'light'
+               ? theme.palette.common.black
+               : theme.palette.common.white,
+            transition: 'all 500ms',
+            '&:hover': {
+               backgroundColor:
+               theme.palette.mode === 'light'
+                  ? theme.palette.common.black
+                  : theme.palette.common.white,
+               color:
+               theme.palette.mode === 'light'
+                  ? theme.palette.common.white
+                  : theme.palette.common.black,
+               borderColor:
+               theme.palette.mode === 'light'
+                  ? theme.palette.common.white
+                  : theme.palette.common.black,
+            },
+         })}
+         >
+         ver mais detalhes
+         </Button>
 
+      </div>
+    
       {/* Modal */}
       <ProjectModal open={modalOpen} onClose={closeModal} project={selectedProject} />
-    </div>
+    </div>  
   );
 }
