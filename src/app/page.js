@@ -78,7 +78,7 @@ export default function Home() {
   }
 
   // Extraindo os dados da API
-  const { menu, introduction, project_title, project_categories, projects, linkedin, contact, footer } = data || {};
+  const { menu, introduction, project_content, project_categories, projects, linkedin, contact, footer } = data || {};
 
   // Criando um tema customizado com MUI
   const theme = createTheme({
@@ -103,8 +103,8 @@ export default function Home() {
       <Navbar darkMode={darkMode} toggleTheme={toggleTheme} language={language} setLanguage={setLanguage} menu={ menu } />
       
       {introduction && <Introduction data={ introduction } />}
-      {project_title && project_categories && projects && (
-        <ProjectsSection data={project_title} projects={projects} categories={project_categories} />
+      {project_content && project_categories && projects && (
+        <ProjectsSection data={project_content} projects={projects} categories={project_categories} />
       )}
       {linkedin && <LinkedinProfile data={ linkedin } />}
       {contact && <Contact data={ contact } />}
