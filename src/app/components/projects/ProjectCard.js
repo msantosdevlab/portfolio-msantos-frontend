@@ -8,7 +8,7 @@ import ProjectModal from "./ProjectModal";
 import parse from "html-react-parser";
 import DOMPurify from 'dompurify';
 
-export function ProjectCard({ project, id }) {
+export function ProjectCard({ project, id, btn_detail, btn_preview }) {
   if (!project) return null; // Evita erro caso project seja undefined
     const [selectedProject, setSelectedProject] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);
@@ -29,7 +29,7 @@ export function ProjectCard({ project, id }) {
 
   return (
       <div
-      className="rounded-lg p-5 dark:bg-darkPrimary g-lightPrimary"
+      className="rounded-lg p-5 dark:bg-darkPrimary bg-lightPrimary"
       data-aos="fade-up"
       data-aos-duration={400 + id * 500}
       data-aos-easing="ease-in-out"
@@ -43,7 +43,7 @@ export function ProjectCard({ project, id }) {
                   ? `${process.env.NEXT_PUBLIC_IMAGE}${project.thumbnail}`
                   : imageDefault
                }
-               alt={project.title || "Imagem do projeto"}
+               alt={project.title || "Project image"}
                layout="fill" // Faz com que a imagem preencha todo o container
                objectFit="cover" // Mantém a imagem como "cover"
             />
@@ -51,12 +51,12 @@ export function ProjectCard({ project, id }) {
       </div>
     
       {/* Título do projeto */}
-      <h3 className="mb-2 text-xl font-bold dark:text-white">
+      <h3 className="mb-2 text-lg font-bold dark:text-white">
         {project.title ?? "Untitled"}
       </h3>
     
       {/* Descrição do projeto */}
-      <div className="min-h-[6rem] text-sm text-black dark:text-white">
+      <div className="min-h-[6rem] text-sm text-black dark:text-[#cecdcd] mb-2">
         { short_description }
       </div>
     
@@ -89,7 +89,7 @@ export function ProjectCard({ project, id }) {
           </a>
           <a href={ project.link_preview } className="transition-all duration-600 text-black dark:text-white hover:text-pinkLogo dark:hover:text-pinkLogo">
             <LaunchIcon sx={{ fontSize: 25 }} />
-            <span> ver o projeto</span>
+            <span> { btn_preview } </span>
           </a>
         </div>
       </div>
@@ -102,6 +102,7 @@ export function ProjectCard({ project, id }) {
          sx={(theme) => ({
             cursor: 'pointer',
             width: '100%',
+            bottom: 0,
             px: 2,
             py: 1,
             border: '1px solid',
@@ -130,13 +131,13 @@ export function ProjectCard({ project, id }) {
             },
          })}
          >
-         ver mais detalhes
+         { btn_detail }
          </Button>
 
       </div>
     
       {/* Modal */}
-      <ProjectModal open={modalOpen} onClose={closeModal} project={selectedProject} />
+      <ProjectModal open={modalOpen} onClose={closeModal} project={selectedProject} btn_preview={btn_preview} />
     </div>  
   );
 }

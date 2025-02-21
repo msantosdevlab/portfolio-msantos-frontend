@@ -8,7 +8,7 @@ import LaunchIcon from '@mui/icons-material/Launch';
 
 import DOMPurify from 'dompurify';
 
-export default function ProjectModal({ open, onClose, project }) {
+export default function ProjectModal({ open, onClose, project, btn_preview }) {
   if (!project) return null;
 
     // Sanitizando o conteúdo HTML para segurança
@@ -35,13 +35,13 @@ export default function ProjectModal({ open, onClose, project }) {
                     ? `${process.env.NEXT_PUBLIC_IMAGE}${project.thumbnail}`
                     : imageDefault
                 }
-                alt={project.title || "Imagem do projeto"}
+                alt={project.title || "Project image"}
                 width={500}
                 height={325}
                 className="object-cover"
               />
 
-              <div className="description">
+              <div className="description mt-4">
                 <div
                   className="min-h-[6rem] text-black dark:text-white"
                   dangerouslySetInnerHTML={{ __html: sanitizedDescriptionLeft }}
@@ -66,7 +66,7 @@ export default function ProjectModal({ open, onClose, project }) {
                     className="transition-all duration-600 text-black dark:text-white hover:text-pinkLogo dark:hover:text-pinkLogo"
                   >
                     <LaunchIcon sx={{ fontSize: 25 }} />
-                    <span> ver o projeto</span>
+                    <span> { btn_preview }</span>
                   </a>
                 </div>
               </div>

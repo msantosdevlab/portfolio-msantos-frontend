@@ -67,8 +67,9 @@ export function ProjectsSection({ data = {}, projects = [], categories = [] }) {
             {/* Exibindo os projetos filtrados */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
             {filteredProjects.map((project, index) => (
-               <ProjectCard key={index} project={project} id={index} />
+               <ProjectCard key={index} project={project} id={index} btn_detail={data.text_btn_detail} btn_preview={data.text_link_preview} />
             ))}
+            
             </div>
          </div>
       </section>
