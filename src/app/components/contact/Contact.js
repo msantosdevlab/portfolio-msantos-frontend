@@ -8,9 +8,6 @@ export default function Contact({ data }) {
    const [isLoaded, setIsLoaded] = useState(true);
 
    // Sanitizando o conteúdo HTML para segurança
-   const sanitizedTitle = DOMPurify.sanitize(data.title ?? "No content");
-   const title = parse(sanitizedTitle)
-
    const sanitizedDescription = DOMPurify.sanitize(data.description ?? "No content");
    const description = parse(sanitizedDescription)
       
@@ -44,7 +41,7 @@ export default function Contact({ data }) {
          <div className="container mx-auto px-3 lg:px-8 flex flex-col items-center md:w-5/6 lg:flex-row lg:justify-between text-center lg:text-left max-w-6xl">
             <div className="w-full lg:w-7/12">
                <div className="title font-title max-w-2xl dark:text-gray-300 text-blackSecondary uppercase pb-0">
-                   { title }
+                   { data.title }
                </div>
                <div className="subtitle dark:text-dark-subtitle text-light-subtitle">
                   { description }
