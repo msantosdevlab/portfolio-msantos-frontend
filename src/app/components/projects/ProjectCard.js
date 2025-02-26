@@ -46,6 +46,7 @@ export function ProjectCard({ project, id, btn_detail, btn_preview }) {
                alt={project.title || "Project image"}
                layout="fill" // Faz com que a imagem preencha todo o container
                objectFit="cover" // Mantém a imagem como "cover"
+               unoptimized
             />
          </div>
       </div>
