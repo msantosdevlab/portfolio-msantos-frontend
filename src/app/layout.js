@@ -1,3 +1,4 @@
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Poppins, Geist, Geist_Mono } from "next/font/google";
 import "./assets/css/globals.css";
 
