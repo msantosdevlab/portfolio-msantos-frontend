@@ -16,7 +16,7 @@ export default function Introduction({ data }) {
           <p className="mb-2 text-black dark:text-gray-200">
             {data.eyebrow ?? "No content"}
           </p>
-          <h1 className="mb-4 font-bold text-5xl sm:text-6xl md:text-5xl lg:text-6xl">
+          <h1 className="mb-4 font-bold text-5xl sm:text-6xl md:text-5xl lg:text-6xl text-center">
             {data.title ?? "No content"}
           </h1>
           <div className="mb-4 max-w-2xl text-center text-black dark:text-gray-200">
