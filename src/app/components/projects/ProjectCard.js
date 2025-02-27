@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import imageDefault from '@/app/assets/images/default_image.png';
 import React, { useState } from 'react';
 import { Button } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -12,6 +11,7 @@ export function ProjectCard({ project, id, btn_detail, btn_preview }) {
   if (!project) return null; // Evita erro caso project seja undefined
     const [selectedProject, setSelectedProject] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);
+    const imageDefault = `${process.env.NEXT_PUBLIC_IMAGE}/projectsimages/default_image.png`;
 
     // Sanitizando o conteúdo HTML para segurança
     const sanitizedDescription = DOMPurify.sanitize(project.short_description ?? "No content");
@@ -26,7 +26,7 @@ export function ProjectCard({ project, id, btn_detail, btn_preview }) {
     setModalOpen(false);
     setSelectedProject(null);
     };
-
+    
   return (
       <div
       className="rounded-lg p-5 dark:bg-darkPrimary bg-lightPrimary"
@@ -38,16 +38,16 @@ export function ProjectCard({ project, id, btn_detail, btn_preview }) {
       <div className="mb-4 aspect-video rounded-lg bg-gray-200 dark:bg-gray-700">
          <div className="relative w-full aspect-video overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700">
             <Image
-               src={
-                  project.thumbnail
-                  ? `${process.env.NEXT_PUBLIC_IMAGE}${project.thumbnail}`
-                  : imageDefault
-               }
-               alt={project.title || "Project image"}
-               layout="fill" // Faz com que a imagem preencha todo o container
-               objectFit="cover" // Mantém a imagem como "cover"
-               unoptimized
-            />
+            src={
+              project.thumbnail
+                ? `${process.env.NEXT_PUBLIC_IMAGE}${project.thumbnail}`
+                : imageDefault
+            }
+            alt={project.title || "Project image"}
+            fill 
+            className="object-cover"
+            unoptimized={!!project.thumbnail}
+                      />
          </div>
       </div>
     
@@ -84,11 +84,11 @@ export function ProjectCard({ project, id, btn_detail, btn_preview }) {
           Links:
         </span>
         <div className="mt-2 mb-4 flex justify-between text-sm text-light-subtitle dark:text-dark-subtitle">
-          <a href={ project.link_rep_git } className="transition-all duration-600 text-black dark:text-white hover:text-pinkLogo dark:hover:text-pinkLogo">
+          <a href={ project.link_rep_git } className="transition-all duration-600 text-black dark:text-white hover:text-pinkLogo dark:hover:text-pinkLogo" target="_blank">
             <GitHubIcon sx={{ fontSize: 25 }} />
             <span> GitHub</span>
           </a>
-          <a href={ project.link_preview } className="transition-all duration-600 text-black dark:text-white hover:text-pinkLogo dark:hover:text-pinkLogo">
+          <a href={ project.link_preview } className="transition-all duration-600 text-black dark:text-white hover:text-pinkLogo dark:hover:text-pinkLogo" target="_blank">
             <LaunchIcon sx={{ fontSize: 25 }} />
             <span> { btn_preview } </span>
           </a>
